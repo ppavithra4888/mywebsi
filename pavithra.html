@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Pavithra P | BCA Student Portfolio</title>
+    <meta name="description" content="Official portfolio of Pavithra P, a BCA student from Pilliyarnatham. Specialist in Python, C, and C++.">
+    <meta name="author" content="Pavithra P">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #00f2fe;
+            --secondary: #4facfe;
+            --bg: #030712;
+            --card: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Entrance Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .sidebar { animation: slideInLeft 1s ease-out forwards; }
+
+        .accordion-item {
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .accordion-item:nth-child(1) { animation-delay: 0.3s; }
+        .accordion-item:nth-child(2) { animation-delay: 0.5s; }
+        .accordion-item:nth-child(3) { animation-delay: 0.7s; }
+
+        /* Background */
+        .bg-animate {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 50%, #111827 0%, #030712 100%);
+        }
+
+        .circle-bg {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(var(--primary), var(--secondary));
+            filter: blur(80px);
+            opacity: 0.15;
+            animation: move 20s infinite alternate;
+        }
+
+        @keyframes move {
+            from { transform: translate(0, 0); }
+            to { transform: translate(200px, 100px); }
+        }
+
+        .wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 30px;
+        }
+
+        .profile-img-container {
+            width: 180px; height: 180px;
+            margin: 0 auto 30px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #0a0f1e;
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.2);
+        }
+
+        .profile-img-container::before {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            animation: pulseGlow 2s infinite ease-in-out;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1); opacity: 1; box-shadow: 0 0 0px var(--primary); }
+            50% { transform: scale(1.05); opacity: 0.5; box-shadow: 0 0 15px var(--primary); }
+            100% { transform: scale(1); opacity: 1; box-shadow: 0 0 0px var(--primary); }
+        }
+
+        .profile-design-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-shadow: 0 0 10px var(--primary), 0 0 20px var(--secondary);
+            letter-spacing: 2px;
+            z-index: 2;
+        }
+
+        .sidebar {
+            position: sticky; top: 40px;
+            height: fit-content;
+            background: var(--card);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+
+        .sidebar h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(0, 242, 254, 0.1);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+        }
+
+        .sidebar-info {
+            text-align: left;
+            font-size: 0.95rem;
+            color: #ccc;
+            line-height: 1.8;
+            border-top: 1px solid var(--border);
+            padding-top: 25px;
+        }
+
+        .sidebar-info p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .content-area { display: flex; flex-direction: column; gap: 20px; }
+
+        .accordion-item {
+            background: var(--card);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 25px;
+            overflow: hidden;
+            transition: 0.3s ease;
+        }
+
+        .accordion-header {
+            padding: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .accordion-title {
+            font-size: 1.4rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .accordion-title span { width: 30px; height: 2px; background: var(--primary); }
+        .plus-icon { font-size: 1.5rem; color: var(--primary); transition: transform 0.3s ease; }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0, 1, 0, 1); }
+        .accordion-item.active .accordion-content { max-height: 1000px; padding-bottom: 30px; }
+        .accordion-item.active .plus-icon { transform: rotate(45deg); }
+        .inner-padding { padding: 0 30px; }
+        .personal-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .info-box { padding: 15px; border-radius: 15px; background: rgba(255,255,255,0.03); }
+        .info-box label { display: block; font-size: 0.75rem; color: #888; margin-bottom: 5px; }
+        .address-box { grid-column: span 2; border-left: 3px solid var(--primary); }
+
+        table { width: 100%; border-collapse: collapse; }
+        th { text-align: left; color: #888; padding: 15px; font-size: 0.85rem; border-bottom: 1px solid var(--border); }
+        td { padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+
+        .score-pill {
+            background: var(--primary); color: #000;
+            padding: 4px 10px; border-radius: 8px;
+            font-weight: 600; font-size: 0.85rem;
+        }
+
+        .skills-wrap { display: flex; flex-wrap: wrap; gap: 12px; }
+        .skill-chip {
+            background: rgba(255,255,255,0.05);
+            padding: 10px 20px; border-radius: 12px;
+            border: 1px solid var(--border);
+            display: flex; align-items: center; gap: 8px;
+        }
+
+        @media (max-width: 992px) {
+            .wrapper { grid-template-columns: 1fr; }
+            .sidebar { position: relative; top: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-animate">
+        <div class="circle-bg" style="width: 400px; height: 400px; top: -100px; left: -100px;"></div>
+        <div class="circle-bg" style="width: 300px; height: 300px; bottom: -50px; right: -50px; animation-delay: -5s;"></div>
+    </div>
+
+    <div class="wrapper">
+        <aside class="sidebar">
+            <div class="profile-img-container">
+                <div class="profile-design-text">P</div>
+            </div>
+
+            <h1>Pavithra</h1>
+            <div class="badge">BCA Student</div>
+            
+            <div class="sidebar-info">
+                <p>📍 Pilliyarnatham, TN</p>
+                <p>📧 pavithra4888@gmail.com</p>
+                <p>📞 +91 9597946350</p>
+            </div>
+        </aside>
+
+        <main class="content-area">
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <h2 class="accordion-title"><span></span> Personal Details</h2>
+                    <span class="plus-icon">+</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="inner-padding">
+                        <div class="personal-grid">
+                            <div class="info-box"><label>Full Name</label><p>Pavithra P</p></div>
+                            <div class="info-box"><label>Age</label><p>19 Years</p></div>
+                            <div class="info-box"><label>Father's Name</label><p>Paramasivam</p></div>
+                            <div class="info-box"><label>Mother's Name</label><p>Nagajothi</p></div>
+                            <div class="info-box address-box">
+                                <label>Current Address</label>
+                                <p>0/1/493 North Street, Pilliyarnatham</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <h2 class="accordion-title"><span></span> Academic Journey</h2>
+                    <span class="plus-icon">+</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="inner-padding">
+                        <div style="overflow-x: auto;">
+                            <table>
+                                <thead>
+                                    <tr><th>Qualification</th><th>Year</th><th>Result</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>SSLC - GGHSS</td><td>2021</td><td><span class="score-pill">72%</span></td></tr>
+                                    <tr><td>HSC (+1) - GGHSS</td><td>2022</td><td><span class="score-pill">85.12%</span></td></tr>
+                                    <tr><td>HSC (+2) - GGHSS</td><td>2023</td><td><span class="score-pill">75.16%</span></td></tr>
+                                    <tr><td>BCA - GVN College</td><td>2024-27</td><td><span class="score-pill">Ongoing</span></td></tr>
+                                    <tr><td>Semester I</td><td>2024</td><td><span class="score-pill">71.67%</span></td></tr>
+                                    <tr><td>Semester II</td><td>2025</td><td><span class="score-pill">84.46%</span></td></tr>
+                                    <tr><td>Semester III</td><td>2025</td><td><span class="score-pill">76%</span></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <h2 class="accordion-title"><span></span> Skills</h2>
+                    <span class="plus-icon">+</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="inner-padding">
+                        <div class="skills-wrap">
+                            <div class="skill-chip">🐍 Python </div>
+                            <div class="skill-chip">💻 C </div>
+                            <div class="skill-chip">🏗️ C++ </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function toggleAccordion(element) {
+            const item = element.parentElement;
+            const allItems = document.querySelectorAll('.accordion-item');
+            allItems.forEach(i => { if (i !== item) i.classList.remove('active'); });
+            item.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
